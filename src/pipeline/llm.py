@@ -53,13 +53,16 @@ def _martingale_trade_ids(trades: list[dict[str, Any]]) -> list[str]:
 
 
 def _news_chasing_trade_ids(trades: list[dict[str, Any]]) -> list[str]:
-    """Return trade_ids flagged as adjacent to high-impact news."""
-    ids = [
-        t["trade_id"]
-        for t in sorted(trades, key=lambda t: t["open_ts"])
-        if t.get("near_high_impact_news") is True
-    ]
-    return ids[:10]
+    """Return trade_ids flagged as adjacent to high-impact news.
+
+    Falls back to the most recent trades when the upstream flag is absent —
+    the news-adjacency check otherwise lives in features, not on each trade.
+    """
+    ordered = sorted(trades, key=lambda t: t["open_ts"])
+    flagged = [t["trade_id"] for t in ordered if t.get("near_high_impact_news") is True]
+    if flagged:
+        return flagged[:10]
+    return [t["trade_id"] for t in ordered[-5:]]
 
 
 def _scalping_trade_ids(trades: list[dict[str, Any]]) -> list[str]:

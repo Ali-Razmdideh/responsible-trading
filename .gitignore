@@ -19,10 +19,6 @@ cohort_insights.json
 messages/
 regulatory_mapping.json
 llm_calls.jsonl
-artifacts/llm_raw/
-artifacts/.pipeline_state.json
-
-# Keep artifact dirs
-!features/.gitkeep
-!messages/.gitkeep
-!artifacts/llm_raw/.gitkeep
+artifacts/
+.pipeline_state.json
+.mypy_cache/
