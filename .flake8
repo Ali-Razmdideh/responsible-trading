@@ -1,0 +1,11 @@
+[flake8]
+max-line-length = 88
+extend-ignore =
+    # black handles these
+    E203,
+    # noqa-style E402 for post-path-insert imports
+    E402,
+per-file-ignores =
+    run.py: E402
+    validate.py: E402
+    src/pipeline/prompts.py: E501

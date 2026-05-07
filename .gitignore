@@ -1,0 +1,28 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Generated artifacts (delete before eval run)
+features/
+patterns.json
+risk_scores.json
+interventions.json
+false_positive_audit.json
+cohort_insights.json
+messages/
+regulatory_mapping.json
+llm_calls.jsonl
+artifacts/llm_raw/
+artifacts/.pipeline_state.json
+
+# Keep artifact dirs
+!features/.gitkeep
+!messages/.gitkeep
+!artifacts/llm_raw/.gitkeep
